@@ -24,7 +24,7 @@
 {
 
     "filterName": "by_event_name",
-    "additionalParameter": "Creates a new entry"
+    "additionalParameter": "Start the application"
     
 }
 
