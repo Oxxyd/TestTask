@@ -21,12 +21,10 @@ class TaskApplicationTests {
 	public void testMyApi() throws IOException {
 		OkHttpClient client = new OkHttpClient();
 
-		// Создаем JSON-объект для отправки
 		JSONObject requestBody = new JSONObject();
 		requestBody.put("filterName", "by_event_name");
 		requestBody.put("additionalParameter", "Creates a new entry");
 
-		// Создаем запрос
 		Request request = new Request.Builder()
 				.url(BASE_URL)
 				.post(RequestBody.create(MediaType.parse("application/json"), requestBody.toString()))
