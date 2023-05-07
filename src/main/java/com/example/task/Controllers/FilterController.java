@@ -38,22 +38,4 @@ public class FilterController {
 
         return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
     }
-
-    /*
-    http://localhost:8080/event/addNewEventRecord
-
-    {
-    "eventName": "Сreates a new entry ",
-    "userAuthorizationStatus": true,
-    "ipAddress" : "192.168.32.64"
-}
-
-
-http://localhost:8080/filter/getFilteringResult
-
-{
-    "filterName": "by_event_name",
-    "additionalParameter": "Creates a new entry"
-}
-     */
 }
