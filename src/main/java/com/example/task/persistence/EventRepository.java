@@ -1,10 +1,9 @@
-package com.example.task.Repositories;
+package com.example.task.persistence;
 
-import com.example.task.Model.Event;
+import com.example.task.entity.Event;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface EventRepository extends JpaRepository<Event, Integer> {
-
     long countByUserAuthorizationStatusTrue();
 
     long countByUserAuthorizationStatusFalse();
