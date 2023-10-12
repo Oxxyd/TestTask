@@ -1,18 +1,15 @@
-package com.example.task.util;
+package com.example.task.util.exception;
 
+import lombok.Getter;
 import org.springframework.validation.FieldError;
-
 import java.util.List;
 
-public class EventNotAddedException extends Exception {
+@Getter
+public class EventNotAddedException extends RuntimeException {
 
     List<FieldError> errors;
 
     public EventNotAddedException(List<FieldError> errors) {
         this.errors = errors;
-    }
-
-    public List<FieldError> getErrors() {
-        return errors;
     }
 }

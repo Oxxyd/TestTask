@@ -1,8 +1,8 @@
 package com.example.task.controller;
 
-import com.example.task.util.model.ErrorResponse;
-import com.example.task.util.EventNotAddedException;
-import com.example.task.util.FilterNotFoundException;
+import com.example.task.util.model.ApiError;
+import com.example.task.util.exception.EventNotAddedException;
+import com.example.task.util.exception.FilterNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -22,8 +22,8 @@ public class ExceptionHandlerController {
 
     @ResponseStatus(HttpStatus.NOT_FOUND)
     @ExceptionHandler(FilterNotFoundException.class)
-    public ResponseEntity<ErrorResponse> handleNotFoundException(FilterNotFoundException e) {
-        final ErrorResponse response = new ErrorResponse(
+    public ResponseEntity<ApiError> handleNotFoundException(FilterNotFoundException e) {
+        final ApiError response = new ApiError(
                 FILTER_NOT_FOUND, Collections.singletonList(e.getMessage()),
                 HttpStatus.NOT_FOUND.value(), System.currentTimeMillis());
         return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
@@ -31,12 +31,12 @@ public class ExceptionHandlerController {
 
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(EventNotAddedException.class)
-    private ResponseEntity<ErrorResponse> handleException(EventNotAddedException e) {
+    private ResponseEntity<ApiError> handleException(EventNotAddedException e) {
         final List<String> errorList = new ArrayList<>();
 
         e.getErrors().forEach(error -> errorList.add(error.getField()));
 
-        final ErrorResponse response = new ErrorResponse(
+        final ApiError response = new ApiError(
                 VALIDATION_ERROR, errorList,
                 HttpStatus.BAD_REQUEST.value(), System.currentTimeMillis());
         return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);

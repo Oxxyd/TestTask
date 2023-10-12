@@ -22,14 +22,14 @@ public class Event {
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
 
     @Column(name = "event_name")
     @NotBlank(message = "Event name should not be empty")
     private String eventName;
 
     @Column(name = "user_authorization_status")
-    private boolean userAuthorizationStatus;
+    private Boolean userAuthorizationStatus;
 
     @Column(name = "ip_address")
     @NotBlank(message = "Ip address should not be empty")
@@ -37,10 +37,4 @@ public class Event {
 
     @Column(name = "date")
     private Date date;
-
-    public Event(String eventName, boolean userAuthorizationStatus, String ipAddress) {
-        this.eventName = eventName;
-        this.userAuthorizationStatus = userAuthorizationStatus;
-        this.ipAddress = ipAddress;
-    }
 }

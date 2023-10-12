@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/task
+    url: jdbc:postgresql://localhost:5432/tracking
     username: postgres
     password: ARTEM565
     driver-class-name: org.postgresql.Driver
@@ -9,3 +9,11 @@ spring:
       hibernate:
         show_sql: true
         dialect: org.hibernate.dialect.PostgreSQLDialect
+  liquibase:
+    change-log: classpath:/db/changelog/db.changelog-master.yml
+    enabled: true
+
+filter-label:
+  by-event-name: by_event_name
+  by-ip-address: by_ip_address
+  by-user-auth-status: by_user_authorization_status

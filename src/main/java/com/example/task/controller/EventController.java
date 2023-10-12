@@ -1,10 +1,10 @@
 package com.example.task.controller;
 
 import com.example.task.dto.EventDto;;
-import com.example.task.service.EventService;
-import com.example.task.util.EventNotAddedException;
+import com.example.task.service.DefaultEventService;
+import com.example.task.util.exception.EventNotAddedException;
 import jakarta.validation.Valid;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
@@ -19,14 +19,10 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/event")
+@RequiredArgsConstructor
 public class EventController {
 
-    private final EventService eventService;
-
-    @Autowired
-    public EventController(EventService eventService) {
-        this.eventService = eventService;
-    }
+    private final DefaultEventService defaultEventService;
 
     @PostMapping("/addNewEventRecord")
     public ResponseEntity<HttpStatus> addNewEventRecord(@RequestBody @Valid EventDto eventDto,
@@ -36,7 +32,7 @@ public class EventController {
 
             throw new EventNotAddedException(errors);
         }
-        eventService.addEvent(eventDto);
+        defaultEventService.addEvent(eventDto);
         return ResponseEntity.ok(HttpStatus.OK);
     }
 }
