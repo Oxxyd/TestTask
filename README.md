@@ -1,25 +1,20 @@
 # TestTask
 
-В проекте создано 2 эндпоинта
+There're 2 endpoints created in a project
 
-По первому адрессу http://localhost:8080/event/addNewEventRecord создается запись о новом событии, чтобы добваить ее нужно послать json файл следующего типа:
+First enpoint `/event/addNewEventRecord` is created to add a record of a new event. To perform this you need to send a json file of the following type:
  
  {
  
-    "eventName": "Start the application",
+    "eventName": "Launches the application",
     "userAuthorizationStatus": true,
     "ipAddress" : "192.168.32.64"
     
 }
 
-1. Название события
-2. Статус авторизации пользователя
-3. ip адресс пользователя
-
-
-  Второй адресс http://localhost:8080/filter/getFilteringResult создан для получения агрегированной информации. Возможно получение колличества событий с
-конкретным названием; получение колличества событий от определенного пользователя (по ip адрессу); получение колличества событий, совершенных авторизированным 
-или нет пользователем. На адресс посылается следующий json файл:
+  Second endpotin `/filter/getFilteringResult` created for receiving aggregated information. It is possible to obtain the number of events with
+a specific name; the number of events from a specific user (by ip address); the number of events performed by an authorized or unauthorized user.
+The following json file is sent to the address:
 
 {
 
@@ -28,17 +23,17 @@
     
 }
 
-1. Название того, по чему нужно фильтровать. Возможны следющие варианты: 
+1. The name of what you want to filter by. The following options are possible: 
  - by_event_name
  - by_ip_address
  - by_user_authorization_status
-2. Дополнительная информация
- - Для 1 пункта - имя события
- - Для 2 пункта - ip адрес
- - Для 3 пункта - значение true или false
+2. Additional parameter:
+ - For 1 item  - event name
+ - For 2 item  - ip address
+ - For 3 item  - true or false
 
-В ответ приходит json файл с одним полем, где будет храниться числовое значение, которое будет равно определенному колличеству тех или иных записе
-в базе данных:
+Will be received json file with one field which will store a numeric value that will be equal to a certain number of those or other entries
+in the database. Exmaple:
 
 {
 
