@@ -1,4 +1,4 @@
-# TestTask
+# User-activity-tracking
 
 There're 2 endpoints created in a project
 
